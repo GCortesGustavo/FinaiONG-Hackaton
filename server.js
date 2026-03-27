@@ -115,7 +115,7 @@ REGLA DE ORO:
 app.get("/api/history", async (req, res) => {
   try {
     const response = await axios.get(
-      `https://testnet.mirrornode.hedera.com/api/v1/topics/${process.env.HEDERA_TOPIC_ID}/messages`,
+      `https://testnet.mirrornode.hedera.com/api/v1/topics/${process.env.HEDERA_TOPIC_ID}/messages?order=desc&limit=100`,
     );
     const messages = response.data.messages.map((m) => ({
       sequence: m.sequence_number,
@@ -130,7 +130,7 @@ app.get("/api/history", async (req, res) => {
 app.get("/api/stats", async (req, res) => {
   try {
     const response = await axios.get(
-      `https://testnet.mirrornode.hedera.com/api/v1/topics/${process.env.HEDERA_TOPIC_ID}/messages`,
+      `https://testnet.mirrornode.hedera.com/api/v1/topics/${process.env.HEDERA_TOPIC_ID}/messages?order=desc&limit=100`,
     );
     const messages = response.data.messages.map((m) =>
       JSON.parse(Buffer.from(m.message, "base64").toString()),
@@ -164,7 +164,7 @@ app.get("/api/stats", async (req, res) => {
 app.get("/api/stats/by-project", async (req, res) => {
   try {
     const response = await axios.get(
-      `https://testnet.mirrornode.hedera.com/api/v1/topics/${process.env.HEDERA_TOPIC_ID}/messages`,
+      `https://testnet.mirrornode.hedera.com/api/v1/topics/${process.env.HEDERA_TOPIC_ID}/messages?order=desc&limit=100`,
     );
 
     const messages = response.data.messages.map((m) =>
